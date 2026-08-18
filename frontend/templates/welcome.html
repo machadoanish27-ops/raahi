@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to Raahi{% endblock %}
+{% block page_name %}welcome{% endblock %}
+{% block body_class %}welcome-page{% endblock %}
+
+{% block extra_head %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<header class="site-header">
+    <div class="shell site-header-inner">
+        <a href="/" class="brand">
+            <img src="{{ url_for('static', filename='raahi_logo.png') }}" alt="Raahi" class="brand-mark">
+            <span class="brand-copy">
+                <strong>Raahi</strong>
+                <span>Smart transit command center</span>
+            </span>
+        </a>
+        <nav class="site-nav">
+            <a href="/auth">Login / Signup</a>
+            <button type="button" class="site-nav-action" data-open-modal="landing-preferences-modal">Preferences</button>
+            <button type="button" class="site-nav-action" data-open-modal="landing-admin-modal">Admin Actions</button>
+        </nav>
+        <a href="/auth" class="btn-primary">Launch Platform</a>
+    </div>
+</header>
+
+<main class="hero">
+    <div class="city-skyline-bg">
+        {% include "components/raahi_skyline.html" %}
+    </div>
+    <div class="shell hero-grid">
+        <section class="hero-copy reveal">
+            <div class="eyebrow">Mumbai Mobility Intelligence</div>
+            <h1>Plan cleaner, smarter city travel with a production-grade transit dashboard.</h1>
+            <p>
+                Raahi combines route planning, air quality awareness, fare intelligence, and personal impact tracking
+                into one calm, high-trust experience for everyday commuters.
+            </p>
+            <div class="inline-actions">
+                <a href="/auth" class="btn-primary">Start Planning</a>
+                <a href="#capabilities" class="btn-secondary">Explore Features</a>
+            </div>
+            <div class="summary-grid">
+                <div class="metric-card dark">
+                    <div class="meta-label">Live Signals</div>
+                    <div class="metric-value">AQI</div>
+                    <div class="metric-label">Air quality, traffic, cost and route context in one flow.</div>
+                </div>
+                <div class="metric-card">
+                    <div class="meta-label">Core Promise</div>
+                    <div class="metric-value small">Cleaner trips</div>
+                    <div class="metric-label">Choose the fastest, cheapest, or lowest-emission route with clarity.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="hero-panel reveal">
+            <div class="card-header">
+                <div>
+                    <div class="eyebrow">Operational Preview</div>
+                    <h2 class="page-title">Daily commute control</h2>
+                </div>
+                <span class="badge success">Live ready</span>
+            </div>
+            <div class="feature-grid" id="capabilities">
+                <article class="feature-card">
+                    <div class="eyebrow">Route Intelligence</div>
+                    <h3>Compare time, cost, and emissions side by side.</h3>
+                    <p class="muted">Make transport decisions with clear tradeoffs instead of guesswork.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="eyebrow">Air Quality Lens</div>
+                    <h3>See AQI before you travel.</h3>
+                    <p class="muted">Protect sensitive commutes with location-aware pollution context.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="eyebrow">Personal Impact</div>
+                    <h3>Track savings that feel tangible.</h3>
+                    <p class="muted">Monitor CO2 avoided, money saved, and eco trips completed over time.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="eyebrow">Admin Oversight</div>
+                    <h3>Review platform health and model metrics.</h3>
+                    <p class="muted">A cleaner operational layer for ML performance and user analytics.</p>
+                </article>
+            </div>
+            <div class="welcome-impact-inline">
+                <div class="page-header">
+                    <div>
+                        <div class="eyebrow">Why It Matters</div>
+                        <h2>Urban mobility decisions deserve better visibility.</h2>
+                    </div>
+                    <a href="/auth" class="btn-secondary">Open Raahi</a>
+                </div>
+                <p class="lead">
+                    Raahi turns noisy mobility choices into a calm operating surface for commuters, teams, and future smart-city workflows.
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <section class="shell stack" id="workflow">
+        <div class="page-header reveal">
+            <div>
+                <div class="eyebrow">Workflow</div>
+                <h2>Designed like a modern SaaS product, not a student project.</h2>
+            </div>
+            <span class="badge info">Donezo x Prodmast style</span>
+        </div>
+        <div class="card-grid">
+            <article class="surface-card reveal">
+                <div class="meta-label">01</div>
+                <h3>Set your origin context</h3>
+                <p class="muted">Use live location or manual destination search to start with the right city context.</p>
+            </article>
+            <article class="surface-card reveal">
+                <div class="meta-label">02</div>
+                <h3>Review route scenarios</h3>
+                <p class="muted">Compare balanced, fastest, cheapest, and eco-first travel modes in a clean card grid.</p>
+            </article>
+            <article class="surface-card reveal">
+                <div class="meta-label">03</div>
+                <h3>Track the outcome</h3>
+                <p class="muted">Navigation, trip history, and impact dashboards close the loop after each ride.</p>
+            </article>
+        </div>
+    </section>
+
+</main>
+
+<div class="modal" id="landing-preferences-modal">
+    <div class="modal-panel">
+        <div class="card-header">
+            <div>
+                <div class="eyebrow">Preferences</div>
+                <h3>GPS and notification setup</h3>
+            </div>
+            <button type="button" class="btn-ghost" data-close-modal>Close</button>
+        </div>
+        <div class="stack">
+            <div class="surface-subtle">
+                <strong>GPS permissions</strong>
+                <p class="muted">Enable live location to start with the right city context and support route-aware commute decisions.</p>
+            </div>
+            <div class="surface-subtle">
+                <strong>Notification preferences</strong>
+                <p class="muted">Stay informed about AQI changes, route conditions, and operational alerts without leaving the main workflow.</p>
+            </div>
+            <a href="/auth" class="btn-primary">Continue to Login / Signup</a>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="landing-admin-modal">
+    <div class="modal-panel">
+        <div class="card-header">
+            <div>
+                <div class="eyebrow">Admin Actions</div>
+                <h3>Operations shortcuts</h3>
+            </div>
+            <button type="button" class="btn-ghost" data-close-modal>Close</button>
+        </div>
+        <div class="stack">
+            <div class="surface-subtle">
+                <strong>Export Analytics</strong>
+                <p class="muted">Available after admin authentication from the control room.</p>
+            </div>
+            <div class="surface-subtle">
+                <strong>Export Users</strong>
+                <p class="muted">Generate the latest user report once you are signed in as an admin.</p>
+            </div>
+            <div class="inline-actions">
+                <a href="/auth" class="btn-primary">Admin Login / Signup</a>
+                <a href="/api/export-analytics" class="btn-secondary">Export Analytics</a>
+                <a href="/api/export-users" class="btn-secondary">Export Users</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

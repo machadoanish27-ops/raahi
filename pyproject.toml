@@ -1,0 +1,16 @@
+[project]
+name = "raahi"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "flask==3.0.3",
+    "flask-login",
+    "flask-sqlalchemy",
+    "python-dotenv",
+    "psycopg2-binary",
+    "gunicorn",
+    "requests==2.32.3",
+]
+
+[tool.vercel]
+entrypoint = "backend.main:app"

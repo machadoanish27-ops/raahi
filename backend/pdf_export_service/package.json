@@ -1,0 +1,17 @@
+{
+  "name": "raahi-pdf-export-service",
+  "version": "1.0.0",
+  "description": "PDF export service for Raahi admin reports",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "render": "node src/renderReportCli.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "pg": "^8.20.0",
+    "puppeteer": "^21.6.1"
+  }
+}
