@@ -27,8 +27,8 @@ tests/                      Test files
 Clone the repository:
 
 ```bash
-git clone https://github.com/yashvieeeeee/Raahi.git
-cd Raahi
+git clone https://github.com/machadoanish27-ops/raahi.git
+cd raahi
 ```
 
 Create and activate a virtual environment:
@@ -123,5 +123,5 @@ In your pull request, include:
 ## Questions?
 
 - Check `README.md` for setup and deployment notes.
-- Check `CLOUD_DB_SETUP.md` for cloud database setup.
+- Check `.env.example` and `README.md` for database configuration guidance.
 - Open an issue if something is unclear or broken.

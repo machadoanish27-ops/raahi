@@ -1,830 +1,238 @@
-# 🚌 Raahi — Smart Commuting Assistant
+# Raahi
 
 <p align="center">
-  <strong>Smarter • Safer • Cleaner Daily Travel</strong>
+  <strong>Smart commuting decisions for everyday travel.</strong><br>
+  Route planning, fare estimation, AQI context, trip tracking, and sustainable mobility insights in one Flask application.
 </p>
 
 <p align="center">
-  A smart commuting platform that combines route intelligence, fare estimation,
-  air-quality awareness, trip tracking, and sustainability insights into one experience.
+  <img src="https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white" alt="Python 3.12">
+  <img src="https://img.shields.io/badge/Flask-3.0.3-000000?logo=flask&logoColor=white" alt="Flask 3.0.3">
+  <img src="https://img.shields.io/badge/PostgreSQL-15-4169E1?logo=postgresql&logoColor=white" alt="PostgreSQL 15">
+  <img src="https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white" alt="Docker Compose">
+  <img src="https://img.shields.io/badge/ML-Optional-F59E0B" alt="Optional machine learning">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-2E7D32" alt="MIT License"></a>
 </p>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3.12-blue" alt="Python">
-  <img src="https://img.shields.io/badge/Flask-3.0.3-black" alt="Flask">
-  <img src="https://img.shields.io/badge/PostgreSQL-Database-336791" alt="PostgreSQL">
-  <img src="https://img.shields.io/badge/Machine%20Learning-Optional-orange" alt="Machine Learning">
-  <img src="https://img.shields.io/badge/Deployment-Vercel-black" alt="Vercel">
-  <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
-</p>
+> This project was developed as a collaborative group project. This repository is maintained as my personal portfolio copy.
 
----
+## Overview
 
-## 🌍 Overview
+Raahi is a web-based smart commuting assistant. It brings route, cost, air-quality, trip, and environmental context together so commuters can compare transportation choices with more than just travel time in mind.
 
-**Raahi** is a smart commuting assistant designed to help users make better public-transportation decisions by bringing multiple commuting factors together in one platform.
+## Problem
 
-Instead of looking at route information, transportation costs, air quality, travel history, and environmental impact separately, Raahi combines these inputs to provide practical commuting insights.
+Daily travel decisions balance several competing factors: time, fare, convenience, pollution exposure, and environmental impact. These inputs are often spread across different services, making it difficult to compare options in one place.
 
-The platform helps users evaluate transportation options based on factors such as:
+## Solution
 
-- 🕒 Travel time
-- 💰 Estimated fare
-- 🌫️ Air quality
-- 🌱 CO₂ impact
-- 📍 Route information
-- 📊 Personal travel history
+Raahi provides a single workflow for entering a destination, comparing available modes, reviewing route and AQI context, and saving completed trips for later personal and administrative insights.
 
-The goal is simple:
+## Features
 
-> **Help people travel smarter without needing to understand maps APIs, air-quality systems, or machine-learning models.**
+- Route planning with distance and estimated travel time.
+- Mode comparisons for walking, train, bus, and auto journeys where data is available.
+- Fare estimation, including bus fare and depot-related lookups.
+- Current AQI information with particulate readings and a quality label.
+- Trip saving, history, profile information, money-saved and CO2-related insights.
+- Admin dashboards for users, trips, route usage, AQI summaries, analytics, and available model metrics.
+- Optional ML advisory and route-model pipelines kept in the separate `raahi_ml/` package.
+- Separate Node.js/Puppeteer PDF export service for reports.
 
----
+External route and AQI data availability depends on configured credentials and service responses. ML features may require local datasets or model assets.
 
-# 🚨 The Problem
+## Architecture
 
-Everyday commuters make small transportation decisions that affect:
-
-- Time
-- Money
-- Comfort
-- Pollution exposure
-- Environmental impact
-
-A commuter may need to decide:
-
-> Should I walk, take a train, use a bus, or take an auto?
-
-Traditional route-planning solutions often focus primarily on distance or travel time.
-
-Raahi takes a broader approach by combining **route, cost, air-quality, and sustainability information** into the commuting decision.
-
----
-
-# 💡 The Solution
-
-Raahi provides a centralized commuting platform where users can:
-
-1. Enter a destination.
-2. Compare available transportation options.
-3. Evaluate estimated time and cost.
-4. Understand AQI conditions.
-5. Compare environmental impact.
-6. Select a suitable route.
-7. Track completed trips.
-8. Monitor personal commuting insights.
-
----
-
-# ✨ Key Features
-
-## 🗺️ Smart Route Planner
-
-Raahi compares multiple transportation modes for a destination, including:
-
-- 🚶 Walking
-- 🚆 Train
-- 🚌 Bus
-- 🚕 Auto
-
-The system provides useful commuting information such as:
-
-- Route distance
-- Estimated travel time
-- Estimated fare
-- CO₂ impact
-
-This allows users to compare transportation choices rather than relying on a single route.
-
----
-
-## 💰 Fare Intelligence
-
-Transportation cost is an important part of everyday commuting.
-
-Raahi provides estimated fare information so users can compare different travel options and make more economical transportation decisions.
-
----
-
-## 🌫️ AQI-Aware Commuting
-
-Raahi incorporates air-quality information into the commuting experience.
-
-Instead of considering only:
-
-> "Which route is faster?"
-
-users can also consider:
-
-> "What are the air-quality conditions?"
-
-This adds an environmental and health-awareness dimension to route selection.
-
----
-
-## 🌱 CO₂ & Sustainability Insights
-
-Raahi tracks the environmental impact of commuting choices.
-
-Users can understand:
-
-- CO₂ impact of trips
-- CO₂ saved
-- Money saved
-- Travel history
-
-This makes sustainable commuting measurable instead of invisible.
-
----
-
-## 📊 Personal Profile Dashboard
-
-The user dashboard provides a centralized view of commuting activity.
-
-Users can track:
-
-- Completed trips
-- Travel history
-- Money saved
-- CO₂ saved
-- Personal commuting information
-
----
-
-## 📍 Location Support
-
-Raahi supports saved user-location information to make route planning more personalized and convenient.
-
----
-
-# 👨‍💼 Admin Features
-
-Raahi also provides an administrative layer for monitoring and analyzing platform activity.
-
-### Admin Dashboard
-
-Provides an overview of:
-
-- Registered users
-- Trips
-- Route activity
-- AQI summaries
-- Platform usage
-
-### 👥 User Management
-
-Administrators can view and manage registered users.
-
-### 📈 Analytics
-
-The platform supports structured analytics information for reviewing:
-
-- User activity
-- Trip activity
-- Route usage
-- AQI patterns
-
-### 📤 Analytics Export
-
-Analytics data can be prepared in a structured format for reporting and review.
-
-### 🤖 Model Metrics
-
-Where supported, administrators can view available machine-learning/model metrics to provide visibility into optional ML functionality.
-
----
-
-# 🧠 Machine Learning Layer
-
-Raahi includes an optional machine-learning layer inside:
-
-```text
-raahi_ml/
+```mermaid
+flowchart TD
+    User[Commuter or admin] --> UI[Flask-served Jinja UI<br/>HTML, CSS, JavaScript]
+    UI --> App[Flask application]
+    App --> Auth[Authentication and authorization]
+    App --> Services[Route, fare, AQI, trip,<br/>profile, notification services]
+    Services --> DB[(PostgreSQL)]
+    Services --> External[Configured external route and AQI services]
+    App -. optional .-> ML[raahi_ml pipelines and advisory]
+    App -. reports .-> PDF[Node.js PDF export service]
 ```
 
-The ML component provides:
+The main Flask application owns the web experience, route registration, services, authentication, and database access. The ML package and PDF export service are separate supporting components so optional or heavier workloads do not need to be part of the core Flask request path.
 
-- Model pipelines
-- Model helpers
-- Optional advisory functionality
-- Model-related metrics
+## Tech Stack
 
-The ML layer is designed to remain separate from the lightweight production application so that heavier machine-learning dependencies do not unnecessarily increase the production deployment footprint.
+| Area | Technologies |
+| --- | --- |
+| Application | Python 3.12, Flask 3.0.3, Flask-Login, Flask-SQLAlchemy |
+| Data | PostgreSQL 15, psycopg2, SQLAlchemy |
+| Frontend | Jinja templates, HTML, CSS, JavaScript |
+| Analytics and ML | pandas, NumPy, scikit-learn, joblib, XGBoost, Folium |
+| Supporting service | Node.js, Express, Puppeteer, PostgreSQL client |
+| Development and deployment | Docker Compose, Gunicorn, Vercel configuration |
 
----
-
-# 🏗️ System Architecture
-
-```text
-                        ┌──────────────────────┐
-                        │        USER          │
-                        │   Web Application    │
-                        └──────────┬───────────┘
-                                   │
-                                   ▼
-                        ┌──────────────────────┐
-                        │      FRONTEND        │
-                        │ HTML / CSS / JS      │
-                        │ Jinja Templates      │
-                        └──────────┬───────────┘
-                                   │
-                                   ▼
-                        ┌──────────────────────┐
-                        │    FLASK BACKEND     │
-                        │                      │
-                        │ Authentication       │
-                        │ Route Intelligence   │
-                        │ Fare Estimation      │
-                        │ AQI Integration      │
-                        │ Trip Management      │
-                        │ Admin Features       │
-                        │ ML Endpoints         │
-                        └───────┬───────┬──────┘
-                                │       │
-                    ┌───────────┘       └────────────┐
-                    ▼                                ▼
-          ┌──────────────────┐              ┌──────────────────┐
-          │    PostgreSQL    │              │   ML COMPONENT   │
-          │     Database     │              │    raahi_ml/     │
-          └──────────────────┘              └──────────────────┘
-```
-
----
-
-# 🔄 How Raahi Works
+## Project Structure
 
 ```text
-                 Enter Destination
-                         │
-                         ▼
-                Route Processing
-                         │
-             ┌───────────┼───────────┐
-             │           │           │
-             ▼           ▼           ▼
-          Distance      Fare        AQI
-             │           │           │
-             └───────────┼───────────┘
-                         │
-                         ▼
-                    CO₂ Analysis
-                         │
-                         ▼
-                Compare Transport
-                     Options
-                         │
-                         ▼
-                   Choose Route
-                         │
-                         ▼
-                    Track Trip
-                         │
-                         ▼
-                Personal Dashboard
+backend/
+  main.py                  Flask application entry point
+  routes/                  Web, auth, API, admin, and ML routes
+  services/                Application and domain services
+  database/                Connection, extensions, and models
+  pdf_export_service/      Optional Node.js PDF report service
+frontend/
+  templates/               Jinja pages and reusable components
+  static/                  CSS and JavaScript assets
+raahi_ml/                  Optional ML pipelines and model utilities
+config/                    Application configuration
+scripts/                   Database and maintenance utilities
+tests/                     Automated tests
 ```
 
----
+## Installation
 
-# 🛠️ Technology Stack
+### Prerequisites
 
-## Backend
-
-- **Python**
-- **Flask**
-- **Flask-Login**
-- **Flask-SQLAlchemy**
-- **SQLAlchemy**
-
-## Database
-
-- **PostgreSQL**
-
-## Frontend
-
-- **HTML**
-- **CSS**
-- **JavaScript**
-- **Jinja Templates**
-
-## Machine Learning
-
-- Python-based ML pipelines
-- Optional model advisory components
-- Model metrics
-
-## Infrastructure & Deployment
-
-- **Docker**
-- **Docker Compose**
-- **Vercel**
-- PostgreSQL
-
----
-
-# 📂 Project Structure
-
-```text
-Raahi/
-│
-├── backend/
-│   ├── routes/
-│   ├── services/
-│   ├── models/
-│   └── ...
-│
-├── frontend/
-│   ├── templates/
-│   └── static/
-│
-├── raahi_ml/
-│   ├── models/
-│   └── ...
-│
-├── config/
-│
-├── scripts/
-│
-├── tests/
-│
-├── .env.example
-├── .gitignore
-├── .vercelignore
-├── CONTRIBUTING.md
-├── docker-compose.yml
-├── ISSUES_TO_FIX.md
-├── LICENSE
-├── pyproject.toml
-├── requirements.txt
-└── README.md
-```
-
----
-
-# ⚙️ Getting Started
-
-## Prerequisites
-
-Make sure the following are installed:
-
-- Python 3.12+
-- PostgreSQL
+- Python 3.12
+- PostgreSQL 15 or a compatible PostgreSQL instance
 - Git
-- Docker & Docker Compose *(optional)*
+- Node.js and npm only if using the PDF export service
 
----
-
-## 1️⃣ Clone the Repository
+Clone the repository and create a virtual environment:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/raahi.git
-cd raahi
-```
-
----
-
-## 2️⃣ Create a Python Virtual Environment
-
-### Windows
-
-```powershell
+git clone https://github.com/yashvieeeeee/Raahi.git
+cd Raahi
 python -m venv .venv
 ```
 
-Activate it:
+Activate it on Windows PowerShell:
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
 ```
 
-### macOS / Linux
+On macOS or Linux:
 
 ```bash
-python3 -m venv .venv
 source .venv/bin/activate
 ```
 
----
-
-## 3️⃣ Install Dependencies
+Install Python dependencies and configure local settings:
 
 ```bash
 pip install -r requirements.txt
-```
-
----
-
-## 4️⃣ Configure Environment Variables
-
-Create a local `.env` file from the provided example.
-
-### Windows
-
-```powershell
-copy .env.example .env
-```
-
-### macOS / Linux
-
-```bash
 cp .env.example .env
 ```
 
-Then open `.env` and configure the required values for:
+On PowerShell, use `Copy-Item .env.example .env` instead of `cp`. Update `.env` with a valid `DATABASE_URL`, `SECRET_KEY`, database credentials, and the external API values required by the features you want to run.
 
-- Database connection
-- Authentication
-- External APIs
-- Application configuration
-- Other required services
-
-> ⚠️ **Never commit `.env` to GitHub.**
-
-Only `.env.example` should be included in the repository.
-
----
-
-## 5️⃣ Start the Application
-
-Run the Flask application using:
+Start the Flask application:
 
 ```bash
 python -m backend.main
 ```
 
-The application serves the frontend through the Flask/Jinja application structure.
+Open `http://localhost:5000`.
 
----
-
-# 🐳 Docker Setup
-
-Raahi includes Docker configuration for local development.
-
-Build and start the services:
+Run the available tests with:
 
 ```bash
-docker compose up --build
+python -m pytest tests -q
 ```
 
-Stop the services:
+### PDF export service
+
+The report exporter is maintained separately under `backend/pdf_export_service/`:
 
 ```bash
+cd backend/pdf_export_service
+npm install
+npm start
+```
+
+Configure `PDF_EXPORT_SERVICE_URL` and `PDF_SERVICE_PORT` in `.env` when connecting it to the Flask application.
+
+## Docker
+
+The included Compose configuration starts PostgreSQL and mounts `scripts/init.sql` for database initialization. It does not containerize the Flask application or PDF service.
+
+```bash
+docker compose up -d
+docker compose logs -f postgres
 docker compose down
 ```
 
----
+Set the Flask database variables to match the Compose defaults, or provide your own values through the shell environment. The default passwords are development placeholders and must not be used in a public deployment.
 
-# 🧪 Testing
+## Security
 
-The repository includes a dedicated test directory:
+- Copy `.env.example` to `.env`; never commit credentials, API keys, or production secrets.
+- Replace all placeholder passwords and `SECRET_KEY` values before deployment.
+- Restrict database access and use a managed secret store in hosted environments.
+- Review external API quotas and keys before enabling route or AQI integrations.
+- Report a suspected vulnerability privately using the process in [SECURITY.md](SECURITY.md).
 
-```text
-tests/
-```
+## Screenshots
 
-Run the available test suite according to the project's configured testing setup.
+No screenshots are included until they are captured from a real running environment. Add the following files under `screenshots/` and place them as indicated:
 
-Example:
+| File | README placement |
+| --- | --- |
+| `landing-page.png` | Immediately below this section as the product overview image |
+| `route-planner.png` | Features section, after the route-planning description |
+| `route-results.png` | Features section, after route and fare comparison |
+| `aqi-information.png` | Features section, after AQI-aware commuting |
+| `user-dashboard.png` | Features section, after personal insights |
+| `trip-history.png` | Features section, after trip tracking |
+| `admin-dashboard.png` | Features section, after admin capabilities |
 
-```bash
-pytest
-```
-
-> The exact test commands may depend on the configured environment and available services.
-
----
-
-# 🔐 Security & Environment Variables
-
-Raahi uses environment-based configuration to keep sensitive information outside the source code.
-
-Never commit:
-
-```text
-.env
-```
-
-or any file containing:
-
-```text
-❌ Database passwords
-❌ API keys
-❌ API secrets
-❌ Authentication secrets
-❌ Private keys
-❌ Production credentials
-```
-
-Use:
-
-```text
-.env.example
-```
-
-as the configuration template.
-
----
-
-# 🌐 Deployment
-
-Raahi includes configuration for **Vercel deployment**.
-
-### Live Application
-
-```text
-https://raahi-wine.vercel.app
-```
-
-> The live deployment should be verified before relying on it as the production demonstration.
-
----
-
-# 📸 Screenshots
-
-Screenshots can be added to this section as the project presentation is expanded.
-
-Recommended screenshots:
-
-```text
-screenshots/
-├── landing-page.png
-├── route-planner.png
-├── route-results.png
-├── aqi-information.png
-├── user-dashboard.png
-├── trip-history.png
-└── admin-dashboard.png
-```
-
-Once added, they can be displayed here using:
+Example embed:
 
 ```markdown
-![Raahi Landing Page](screenshots/landing-page.png)
-
-![Route Planner](screenshots/route-planner.png)
-
-![Route Results](screenshots/route-results.png)
-
-![User Dashboard](screenshots/user-dashboard.png)
-
-![Admin Dashboard](screenshots/admin-dashboard.png)
+![Raahi route results](screenshots/route-results.png)
 ```
 
----
+## Team Attribution
 
-# 📊 Example Decision Flow
+This project was developed as a collaborative group project. This repository is maintained as my personal portfolio copy.
 
-Raahi is designed around a multi-factor commuting decision rather than a single "fastest route" recommendation.
+### My Contributions
 
-```text
-                ┌───────────────┐
-                │  Destination  │
-                └───────┬───────┘
-                        │
-                        ▼
-              ┌───────────────────┐
-              │ Available Routes  │
-              └─────────┬─────────┘
-                        │
-         ┌──────────────┼──────────────┐
-         ▼              ▼              ▼
-      Time           Cost            AQI
-         │              │              │
-         └──────────────┼──────────────┘
-                        ▼
-                    CO₂ Impact
-                        │
-                        ▼
-              ┌───────────────────┐
-              │ Compare Options   │
-              └─────────┬─────────┘
-                        │
-                        ▼
-                  User Decision
-```
+Document only work personally completed:
 
----
+- _Contribution placeholder 1_
+- _Contribution placeholder 2_
 
-# 🧩 Project Refinements
+### Team Members
 
-## 1. Cleaner Commuter Experience
+Add the actual collaborators and profile links before publishing:
 
-Raahi keeps the commuter flow simple:
+- _Team member placeholder 1_
+- _Team member placeholder 2_
 
-```text
-Destination → Compare → Understand → Choose
-```
+## Future Scope
 
-The interface focuses on practical outputs instead of exposing unnecessary technical complexity.
+Potential follow-up work includes live public-transport updates, more detailed emissions estimates, improved personalized recommendations, mobile clients, and longer-term commuting analytics. These are future directions, not current capabilities.
 
----
+## Contributing
 
-## 2. AQI-Aware Route Planning
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. Use the issue templates for bugs and feature proposals, and include tests or a clear explanation when tests cannot be run.
 
-Route selection is not limited to speed.
+## License
 
-Raahi adds air-quality context so users can consider:
+Raahi is available under the [MIT License](LICENSE).
 
-- Pollution exposure
-- Comfort
-- Sustainability
-- Travel conditions
+## Portfolio Review
 
----
+| Area | Score | Actionable improvement |
+| --- | ---: | --- |
+| Documentation | 8/10 | Add verified screenshots and a short demo walkthrough. |
+| Architecture presentation | 8/10 | Add a deployment diagram once the hosted topology is finalized. |
+| Code organization | 8/10 | Add focused tests around route, fare, AQI, and authentication boundaries. |
+| Recruiter appeal | 7/10 | Replace contribution placeholders with concrete outcomes and links. |
+| Open-source readiness | 8/10 | Adopt the issue, PR, security, and conduct documents in this repository. |
+| Deployment readiness | 6/10 | Document a tested production database and secret-management workflow. |
 
-## 3. Personal Impact Tracking
+**Overall: 7.5/10.** The project has a credible product and architecture story; evidence of operation, ownership, and production deployment will create the biggest portfolio lift.
 
-Completed trips are converted into measurable personal insights.
+## Release Strategy
 
-Users can understand:
-
-- Trips completed
-- Money saved
-- CO₂ saved
-- Travel history
-
----
-
-## 4. Admin Intelligence
-
-The administrative layer provides a higher-level view of:
-
-- Users
-- Trips
-- Routes
-- AQI
-- Analytics
-- Model availability
-
----
-
-## 5. Lightweight Production Architecture
-
-Raahi separates optional machine-learning components from the lightweight production application.
-
-This allows heavier ML experimentation to remain separate from the deployment-oriented application layer.
-
----
-
-# 🗺️ Supported Commuting Modes
-
-Raahi is designed to compare common transportation options such as:
-
-| Mode | Primary Considerations |
-|---|---|
-| 🚶 Walking | Distance, time, CO₂ |
-| 🚆 Train | Time, fare, route |
-| 🚌 Bus | Time, fare, route |
-| 🚕 Auto | Time, fare, route |
-
----
-
-# 📈 Sustainability
-
-Raahi aims to make sustainable commuting choices measurable.
-
-The platform can use commuting information to surface:
-
-- CO₂ impact
-- CO₂ saved
-- Money saved
-- Trip history
-- Transportation comparisons
-
-This helps users understand the impact of everyday transportation decisions.
-
----
-
-# 🔮 Future Scope
-
-Potential future improvements include:
-
-### 🤖 Smarter Recommendations
-
-- Personalized commuting recommendations
-- Improved ML-based route intelligence
-- User-specific travel preferences
-
-### 🚆 Real-Time Transportation
-
-- Live public transportation information
-- Real-time delays
-- Service availability
-- Dynamic route updates
-
-### 🌱 Advanced Sustainability
-
-- More detailed emissions estimation
-- Personal sustainability scores
-- Long-term environmental analytics
-
-### 📱 Mobile Experience
-
-- Dedicated Android/iOS application
-- Location-aware notifications
-- Mobile-first trip tracking
-
-### 📊 Advanced Analytics
-
-- Historical commuting trends
-- Predictive travel insights
-- Advanced admin dashboards
-
----
-
-# 🐛 Known Issues
-
-See:
-
-```text
-ISSUES_TO_FIX.md
-```
-
-for known project issues and planned fixes.
-
----
-
-# 🤝 Contributing
-
-Contributions and improvements are welcome.
-
-Please read:
-
-```text
-CONTRIBUTING.md
-```
-
-before submitting changes.
-
----
-
-# 👥 Team Project
-
-Raahi was developed as a **collaborative group project**.
-
-This repository is my personal copy of the project maintained for **portfolio and documentation purposes**.
-
-## 👨‍💻 My Contributions
-
-> Replace the following placeholders with your **actual contributions** before publishing.
-
-- [Contribution 1]
-- [Contribution 2]
-- [Contribution 3]
-
-Examples of contribution categories could include:
-
-- Frontend development
-- Backend/API development
-- Database integration
-- Route/fare logic
-- AQI integration
-- ML components
-- Dashboard development
-- Testing
-- Deployment
-
-**Only list work you personally completed.**
-
-## 👥 Team Members
-
-Add the actual team members and their GitHub profiles here.
-
-```text
-- Team Member 1 — GitHub: https://github.com/username
-- Team Member 2 — GitHub: https://github.com/username
-- Team Member 3 — GitHub: https://github.com/username
-```
-
----
-
-# 📚 Project Documentation
-
-Additional project documentation can be found in:
-
-```text
-CONTRIBUTING.md
-ISSUES_TO_FIX.md
-LICENSE
-```
-
----
-
-# 📄 License
-
-This project is licensed under the **MIT License**.
-
-See the [`LICENSE`](LICENSE) file for details.
-
----
-
-# 🌱 Vision
-
-> **Make everyday commuting simpler, smarter, and more sustainable.**
-
-Raahi brings together **route, cost, air-quality, trip, and environmental information** to help commuters make better transportation decisions.
-
----
-
-<p align="center">
-  Built with ❤️ for smarter and more sustainable mobility.
-</p>
+Until automated releases are added, use version tags such as `v0.1.0` for reviewed milestones. Each release should summarize user-visible changes, migration requirements, known limitations, and tested deployment targets in [CHANGELOG.md](CHANGELOG.md).

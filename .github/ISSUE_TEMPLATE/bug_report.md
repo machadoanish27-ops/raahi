@@ -1,0 +1,36 @@
+---
+name: Bug report
+about: Report a reproducible problem in Raahi
+title: "[Bug]: "
+labels: bug
+assignees: ""
+---
+
+## Summary
+
+Describe the problem clearly.
+
+## Steps to Reproduce
+
+1.
+2.
+3.
+
+## Expected Behavior
+
+What did you expect to happen?
+
+## Actual Behavior
+
+What happened instead?
+
+## Environment
+
+- OS:
+- Python version:
+- Browser:
+- Database or deployment context:
+
+## Evidence
+
+Add relevant logs, screenshots, or a minimal reproduction. Remove credentials and personal data before posting.
